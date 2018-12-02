@@ -62,9 +62,12 @@ def command_c(message):
             def get_total_pages(html):
                 soup = BeautifulSoup(html, "lxml")
                 try:
-                    pages = soup.find("div", id="pagn").find("span", class_="pagnDisabled").text
+                    try:
+                        pages = soup.find("div", id="pagn").find("span", class_="pagnDisabled").text
+                    except:
+                        pages = soup.find("div", id="pagn").find("span", class_="pagnLink").text
                 except:
-                    pages = soup.find("div", id="pagn").find("span", class_="pagnLink").text
+                    pages = 1
 
                 return int(pages)
 
@@ -231,6 +234,7 @@ def command_c(message):
                             "link": links}
                     write_csv(data)
                 except:
+                    bot.send_message(message.from_user.id, 'Something wrong, try again')
                     print(sys.exc_info())
 
             def main():
@@ -248,11 +252,18 @@ def command_c(message):
                             parse(get_html(new_url))
                         write()
                     else:
-                        for p in range(1, int(all_pages) + 1):
-                            new_url = re.sub('&bbn', '&page=' + str(p) + '&bbn', url)
-                            print(new_url)
-                            parse(get_html(new_url))
-                        write()
+                        try:
+                            for p in range(1, int(all_pages) + 1):
+                                new_url = re.sub('ref=\w+', 'sr_pg_' + str(p) + '&bbn', url)
+                                print(new_url)
+                                parse(get_html(new_url))
+                            write()
+                        except:
+                            for p in range(1, int(all_pages) + 1):
+                                new_url = re.sub('&bbn', '&page=' + str(p) + '&bbn', url)
+                                print(new_url)
+                                parse(get_html(new_url))
+                            write()
                 except:
                     bot.send_message(message.from_user.id, 'Try Again')
                     print(sys.exc_info())
