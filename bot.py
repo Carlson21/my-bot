@@ -8,6 +8,7 @@ import csv
 import pandas as pd
 import string
 import random
+from telegram.ext.dispatcher import run_async
 
 bot = telebot.TeleBot('624431408:AAEMRUTdMwx_xJg7EFemgFn-wdrAQ0hb6tc')
 
@@ -24,6 +25,11 @@ def command_c(message):
     if message.text == '/start':
         #print("qqq")
         bot.send_message(message.from_user.id, 'Input URL')
+        
+        @run_async
+        def echo(bot, update):
+            bot.sendMessage(update.message.chat_id, text=update.message.text)
+        
         @bot.message_handler(content_types='text')
 
         def input_text(message):
