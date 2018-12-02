@@ -27,7 +27,7 @@ def command_c(message):
         @bot.message_handler(content_types='text')
 
         def input_text(message):
-            url = message.text
+            
 
             def write_csv(data):
                 name = ''
@@ -229,7 +229,7 @@ def command_c(message):
             def main():
                 try:
                     bot.send_message(message.from_user.id, 'Alright, wait please')
-                    url = input("")
+                    url = message.text
                     print(url)
                     page = r'page=\d'
                     all_pages = get_total_pages(get_html(url))
