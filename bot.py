@@ -239,9 +239,9 @@ def command_c(message):
 
             def main():
                 try:
-                    bot.send_message(message.from_user.id, 'Alright, wait please')
                     url = message.text
                     print(url)
+                    bot.send_message(message.from_user.id, 'Alright, wait please')
                     page = r'page=\d'
                     all_pages = get_total_pages(get_html(url))
                     start = re.findall('\d', str((re.findall(page, url))))
@@ -252,13 +252,14 @@ def command_c(message):
                             parse(get_html(new_url))
                         write()
                     else:
-                        try:
+                        keywords = re.findall('keywords', url)
+                        if keywords:
                             for p in range(1, int(all_pages) + 1):
                                 new_url = re.sub('keywords', 'page=' + str(p) + '&keywords', url)
                                 print(new_url)
                                 parse(get_html(new_url))
                             write()
-                        except:
+                        else:
                             for p in range(1, int(all_pages) + 1):
                                 new_url = re.sub('&bbn', '&page=' + str(p) + '&bbn', url)
                                 print(new_url)
