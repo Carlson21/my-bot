@@ -12,6 +12,10 @@ from telegram.ext.dispatcher import run_async
 
 bot = telebot.TeleBot('624431408:AAEMRUTdMwx_xJg7EFemgFn-wdrAQ0hb6tc')
 
+@run_async
+def echo(bot, update):
+    bot.sendMessage(update.message.chat_id, text=update.message.text)
+
 titles = []
 brands = []
 full_prices = []
@@ -19,17 +23,12 @@ ratings = []
 sellerss = []
 links = []
 
-
 @bot.message_handler(commands=['start'])
 def command_c(message):
     if message.text == '/start':
         #print("qqq")
         bot.send_message(message.from_user.id, 'Input URL')
-        
-        @run_async
-        def echo(bot, update):
-            bot.sendMessage(update.message.chat_id, text=update.message.text)
-        
+   
         @bot.message_handler(content_types='text')
 
         def input_text(message):
