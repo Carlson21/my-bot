@@ -254,7 +254,7 @@ def command_c(message):
                     else:
                         try:
                             for p in range(1, int(all_pages) + 1):
-                                new_url = re.sub('ref=\w+', 'sr_pg_' + str(p) + '&bbn', url)
+                                new_url = re.sub('ref=\w+', 'ref=sr_pg_' + str(p) + '&bbn', url)
                                 print(new_url)
                                 parse(get_html(new_url))
                             write()
