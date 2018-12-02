@@ -118,7 +118,8 @@ def command_c(message):
                                 brands.append(str(brand))
                                 print(brand)
                             except:
-                                brand = ""
+                                brands.append(str(brand))
+                                print(brand)
 
                             try:
                                 link = item.find("div", class_="a-row a-spacing-mini").find("a").get("href")
@@ -214,6 +215,12 @@ def command_c(message):
                         continue
 
             def write():
+                print(len(titles))
+                print(len(full_prices))
+                print(len(ratings))
+                print(len(brands))
+                print(len(sellerss))
+                print(len(links))
 
                 try:
                     data = {"title": titles,  # Доделать append если возможно
