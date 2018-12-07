@@ -8,7 +8,8 @@ import csv
 import pandas as pd
 import string
 import random
-
+from telegram.ext.dispatcher import run_async
+from telegram.ext import Updater
 
 bot = telebot.TeleBot('624431408:AAEMRUTdMwx_xJg7EFemgFn-wdrAQ0hb6tc')
 token = '624431408:AAEMRUTdMwx_xJg7EFemgFn-wdrAQ0hb6tc'
