@@ -4,12 +4,17 @@ bs4==0.0.1
 certifi==2018.11.29
 cffi==1.11.5
 chardet==3.0.4
+Click==7.0
 cryptography==2.4.2
 et-xmlfile==1.0.1
+Flask==1.0.2
 future==0.17.1
 idna==2.7
+itsdangerous==1.1.0
 jdcal==1.4
+Jinja2==2.10
 lxml==4.2.5
+MarkupSafe==1.1.0
 numpy==1.15.4
 openpyxl==2.5.12
 pandas==0.23.4
@@ -21,3 +26,4 @@ pytz==2018.7
 requests==2.20.1
 six==1.11.0
 urllib3==1.24.1
+Werkzeug==0.14.1
