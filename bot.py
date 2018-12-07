@@ -11,15 +11,11 @@ import random
 
 
 bot = telebot.TeleBot('624431408:AAEMRUTdMwx_xJg7EFemgFn-wdrAQ0hb6tc')
+token = '624431408:AAEMRUTdMwx_xJg7EFemgFn-wdrAQ0hb6tc'
 
+upd = Updater(token, workers=32)
 
-
-titles = []
-brands = []
-full_prices = []
-ratings = []
-sellerss = []
-links = []
+@run_async
 
 @bot.message_handler(commands=['start'])
 def command_c(message):
@@ -30,7 +26,12 @@ def command_c(message):
         @bot.message_handler(content_types='text')
 
         def input_text(message):
-            
+            titles = []
+            brands = []
+            full_prices = []
+            ratings = []
+            sellerss = []
+            links = []
 
             def write_csv(data):
                 name = ''
@@ -277,4 +278,4 @@ def command_c(message):
                 main()
 
 
-
+bot.polling(none_stop=True, interval=0)
