@@ -245,11 +245,11 @@ def command_c(message):
             def main():
                 try:
                     url = message.text
-                    print(url)
-                    bot.send_message(message.from_user.id, 'Alright, wait please')
+                    print(url)                    
                     page = r'page=\d'
                     all_pages = get_total_pages(get_html(url))
                     start = re.findall('\d', str((re.findall(page, url))))
+                    bot.send_message(message.from_user.id, 'Alright, wait please')
                     if start:
                         for p in range(int(start[0]), int(all_pages) + 1):
                             new_url = re.sub(page, 'page=' + str(p), url)
