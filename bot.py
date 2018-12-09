@@ -10,9 +10,11 @@ import string
 import random
 from telegram.ext.dispatcher import run_async
 from telegram.ext import Updater
+import os
 
-bot = telebot.TeleBot('624431408:AAEMRUTdMwx_xJg7EFemgFn-wdrAQ0hb6tc')
-token = '624431408:AAEMRUTdMwx_xJg7EFemgFn-wdrAQ0hb6tc'
+TOKEN = os.getenv("TOKEN")
+bot = telebot.TeleBot(TOKEN)
+
 
 upd = Updater(token, workers=32)
 
