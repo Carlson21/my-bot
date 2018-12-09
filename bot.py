@@ -16,7 +16,7 @@ TOKEN = os.getenv("TOKEN")
 bot = telebot.TeleBot(TOKEN)
 
 
-upd = Updater(token, workers=32)
+upd = Updater(TOKEN, workers=32)
 
 @run_async
 
