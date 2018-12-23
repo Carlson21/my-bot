@@ -16,6 +16,9 @@ from telegram.ext import Updater
 from telebot import types
 import os
 
+PATH="/usr/local/bin:/usr/bin:/bin:/app/vendor/firefox"
+LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:/lib:/app/vendor/firefox"
+
 TOKEN = os.getenv("TOKEN")
 bot = telebot.TeleBot(TOKEN)
 
