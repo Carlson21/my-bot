@@ -8,6 +8,9 @@ import csv
 import pandas as pd
 import string
 import random
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from PIL import Image
 from telegram.ext.dispatcher import run_async
 from telegram.ext import Updater
 from telebot import types
