@@ -16,9 +16,6 @@ from telegram.ext import Updater
 from telebot import types
 import os
 
-fox_exec_shim = os.environ.get("FIRE_FOX_BIN", "firefoxdriver")
-self.selenium = webdriver.Firefox(executable_path=fox_exec_shim)
-
 TOKEN = os.getenv("TOKEN")
 bot = telebot.TeleBot(TOKEN)
 
