@@ -420,6 +420,8 @@ def command(message):
             cropped.save(name)
             photo = open(name, 'rb')
             bot.send_photo(message.from_user.id, photo)
+            
+            display.stop()
 
         keyboard.row(left, firs_b, second_b, third_b, right)
         bot.send_message(message.from_user.id,reply_markup=keyboard,text='--')
