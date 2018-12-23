@@ -6,6 +6,7 @@ cffi==1.11.5
 chardet==3.0.4
 Click==7.0
 cryptography==2.4.2
+EasyProcess==0.2.5
 et-xmlfile==1.0.1
 future==0.17.1
 idna==2.7
@@ -23,6 +24,7 @@ pyTelegramBotAPI==3.6.6
 python-dateutil==2.7.5
 python-telegram-bot==11.1.0
 pytz==2018.7
+PyVirtualDisplay==0.2.1
 requests==2.20.1
 selenium==3.141.0
 six==1.11.0
