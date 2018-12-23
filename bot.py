@@ -10,6 +10,7 @@ import string
 import random
 from telegram.ext.dispatcher import run_async
 from telegram.ext import Updater
+from telebot import types
 import os
 
 TOKEN = os.getenv("TOKEN")
@@ -280,5 +281,141 @@ def command_c(message):
             if __name__ == '__main__':
                 main()
 
+@bot.message_handler(commands=['statistics'])
+def command(message):
+    mess = message
+    @bot.message_handler(content_types='text')
+    def input_msg(message):
+        global c
+        msg = message.text
+        print(msg)
+
+        if msg == '/statistics':
+            c = 0
+
+        keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+        file = [['Kids Home Store',
+                 'Kitchen & Dining',
+                 'Bedding'],
+                ['Bath',
+                 'Furniture',
+                 'Home Decor'],
+                ['Wall Art',
+                 'Lighting & Ceiling Fans',
+                 'Seasonal Decor'],
+                ['Event & Party Supplies',
+                 'Heating, Cooling & Air Quality',
+                 'Irons & Steamers'],
+                ['Vacuums & Floor Care',
+                 'Storage & Organization',
+                 'Cleaning Supplies'],
+                ['Painting, Drawing & Art Supplies',
+                 'Beading & Jewelry Making',
+                 'Crafting'],
+                ['Fabric',
+                 'Fabric Decorating',
+                 'Knitting & Crochet'],
+                ['Needlework',
+                 'Organization, Storage & Transport',
+                 'Printmaking'],
+                ['Scrapbooking & Stamping',
+                 'Sewing',
+                 'Party Decorations & Supplies'],
+                ['Gift Wrapping Supplies',
+                 'Action Figures & Statues',
+                 'Arts & Crafts'],
+                ['Baby & Toddler Toys',
+                 'Building Toys',
+                 'Dolls & Accessories'],
+                ['Dress Up & Pretend Play',
+                 'Kids Electronics',
+                 'Games'],
+                ['Grown-Up Toys',
+                 'Hobbies',
+                 'Kids Furniture, Decor & Storage'],
+                ['Learning & Education',
+                 'Novelty & Gag Toys',
+                 'Party Supplies'],
+                ['Puppets',
+                 'Puzzles',
+                 'Sports & Outdoor Play'],
+                ['Stuffed Animals & Plush Toys',
+                 'Toy Remote Control & Play Vehicles',
+                 'Tricycles, Scooters & Wagons'],
+                ['Video Games',
+                 'Tools & Home Improvement',
+                 'Appliances'],
+                ['Building Supplies',
+                 'Electrical',
+                 'Hardware'],
+                ['Kitchen & Bath Fixtures',
+                 'Light Bulbs',
+                 'Lighting & Ceiling Fans'],
+                ['Measuring & Layout Tools',
+                 'Painting Supplies & Wall Treatments',
+                 'Power & Hand Tools'],
+                ['Rough Plumbing',
+                 'Safety & Security',
+                 'Storage & Home Organization']]
+        left = '←'
+        right = '→'
+        firs_b, second_b, third_b = file[0]
+
+        if msg == '→' or msg == '←':
+            if msg == '→':
+                c += 1
+                #print(c)
+                if c == 20:
+                    c = 0
+            else:
+                c -= 1
+                #print(c)
+                if c == -20:
+                    c = -1
+            firs_b, second_b, third_b = file[c]
+
+        need = file[c].count(msg)
+
+        #print(need)
+
+        if need > 0:
+            print('Yes')
+            driver = webdriver.Firefox()
+            driver.get('https://trends.google.ru/trends/?geo=US')
+            try:
+                search_line = driver.find_element_by_id('input-254')
+            except:
+                search_line = driver.find_element_by_id('input-24')
+            search_line.click()
+            search_line.send_keys(str(msg))
+            driver.implicitly_wait(2)
+            try:
+                helper = driver.find_element_by_id('ul-254').find_element_by_tag_name('li')
+                helper.click()
+            except:
+                pass
+            date_popup = driver.find_element_by_tag_name('custom-date-picker')
+            date_popup.click()
+            date_pick = driver.find_element_by_id('select_option_19')
+            date_pick.click()
+            time.sleep(2)
+            leters = string.ascii_lowercase
+            name = ''
+            for leter in range(5):
+                name += random.choice(leters)
+            name = name + '.png'
+            driver.get_screenshot_as_file('C:/Users/kljhklj/Desktop/t-bot/' + str(name))
+            img = Image.open(name)
+            pos = (65, 339, 1139, 672)
+            cropped = img.crop(pos)
+            cropped.save(name)
+            photo = open(name, 'rb')
+            bot.send_photo(message.from_user.id, photo)
+
+        keyboard.row(left, firs_b, second_b, third_b, right)
+        bot.send_message(message.from_user.id,reply_markup=keyboard,text='--')
+
+    if __name__=='__main__':
+        input_msg(message)
 
 bot.polling(none_stop=True, interval=0)
