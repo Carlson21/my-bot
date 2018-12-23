@@ -15,9 +15,9 @@ from telegram.ext.dispatcher import run_async
 from telegram.ext import Updater
 from telebot import types
 import os
+from pyvirtualdisplay import Display
 
-PATH="/usr/local/bin:/usr/bin:/bin:/app/vendor/firefox"
-LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:/lib:/app/vendor/firefox"
+
 
 TOKEN = os.getenv("TOKEN")
 bot = telebot.TeleBot(TOKEN)
@@ -386,6 +386,9 @@ def command(message):
 
         if need > 0:
             print('Yes')
+            display = Display(visible=0, size=(1024, 768))
+            display.start()
+            
             driver = webdriver.Firefox()
             driver.get('https://trends.google.ru/trends/?geo=US')
             try:
