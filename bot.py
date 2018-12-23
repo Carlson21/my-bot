@@ -407,7 +407,7 @@ def command(message):
             for leter in range(5):
                 name += random.choice(leters)
             name = name + '.png'
-            driver.get_screenshot_as_file('C:/Users/kljhklj/Desktop/t-bot/' + str(name))
+            driver.get_screenshot_as_file(str(name))
             img = Image.open(name)
             pos = (65, 339, 1139, 672)
             cropped = img.crop(pos)
