@@ -15,7 +15,6 @@ from telegram.ext.dispatcher import run_async
 from telegram.ext import Updater
 from telebot import types
 import os
-from pyvirtualdisplay import Display
 
 
 
@@ -386,10 +385,8 @@ def command(message):
 
         if need > 0:
             print('Yes')
-            display = Display(visible=0, size=(1024, 768))
-            display.start()
             
-            driver = webdriver.Firefox()
+            driver = webdriver.PhantomJS()
             driver.get('https://trends.google.ru/trends/?geo=US')
             try:
                 search_line = driver.find_element_by_id('input-254')
@@ -421,7 +418,7 @@ def command(message):
             photo = open(name, 'rb')
             bot.send_photo(message.from_user.id, photo)
             
-            display.stop()
+            
 
         keyboard.row(left, firs_b, second_b, third_b, right)
         bot.send_message(message.from_user.id,reply_markup=keyboard,text='--')
