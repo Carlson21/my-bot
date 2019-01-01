@@ -288,7 +288,7 @@ def command_c(message):
 
 @bot.message_handler(commands=['statistics'])
 def command(message):
-    bot.send_message(message.from_use.id, "'It doesn't work at the moment")
+    bot.send_message(message.from_user.id, "'It doesn't work at the moment")
     
 
 bot.polling(none_stop=True, interval=0)
