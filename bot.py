@@ -226,18 +226,34 @@ def command_c(message):
                                 res = '0'
                                 print(res)
                                 sellerss.append(str(res))
-
+                        
                     except:
                         continue
+                all_lists = [titles, full_prices, ratings, brands, sellerss, links]
+                all = [len(titles), len(full_prices), len(ratings), len(brands), len(sellerss), len(links)]
+                print(all)
+                print(str(max(all)) + ' ------MAX')
+
+                summ = sum(all)
+                lenn = len(all)
+                for i in all[0:]:
+                    ind = all.index(i)
+                    if summ // lenn == max(all):
+                        print(True)
+                        continue
+                    else:
+                        print(False)
+                        if summ // i < lenn:
+                            all[ind] -= 1
+                            all_lists[ind].pop(0)
+                        if summ // i > lenn:
+                            all[ind] += 1
+                            all_lists[ind].append('')
+
+                print('===============')
+                print(all)
 
             def write():
-                print(len(titles))
-                print(len(full_prices))
-                print(len(ratings))
-                print(len(brands))
-                print(len(sellerss))
-                print(len(links))
-
                 try:
                     data = {"title": titles,  # Доделать append если возможно
                             "price": full_prices,
