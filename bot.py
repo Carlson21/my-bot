@@ -4,13 +4,9 @@ import requests
 import urllib.request
 import sys
 import re
-import csv
 import pandas as pd
 import string
 import random
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from PIL import Image
 from telegram.ext.dispatcher import run_async
 from telegram.ext import Updater
 from telebot import types
@@ -173,8 +169,15 @@ def command_c(message):
 
                                     cent = item.find("span", class_="sx-price sx-price-large").find("sup",
                                                                                                     class_="sx-price-fractional").text
+                                    full_price = ("$" + price + "." + cent)
+                                    full_prices.append(str(full_price))
+                                    cent = ''
+                                    print(full_price)
                                 except:
                                     price = item.find("span", class_="a-size-base a-color-base").text
+                                    full_price = (price)
+                                    full_prices.append(str(full_price))
+                                    print(full_price)
 
                                 full_price = ("$" + price + "." + cent)
                                 full_prices.append(str(full_price))
