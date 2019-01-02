@@ -179,11 +179,6 @@ def command_c(message):
                                     full_prices.append(str(full_price))
                                     print(full_price)
 
-                                full_price = ("$" + price + "." + cent)
-                                full_prices.append(str(full_price))
-                                cent = ''
-                                print(full_price)
-
                             except:
                                 full_price = "No price"
                                 print(full_price)
